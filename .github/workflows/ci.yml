@@ -23,6 +23,7 @@ jobs:
       - run: npm run lint
       - run: npm run test
       - run: npm audit --audit-level=high
+      - run: npm audit --omit=dev --audit-level=high
       - run: npm run build
       - run: node scripts/package-extension.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

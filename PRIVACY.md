@@ -1,6 +1,6 @@
 ﻿# Privacy Policy for AvtoNetGaraza
 
-Last updated: April 11, 2026
+Last updated: August 9, 2026
 
 AvtoNetGaraza is a Chrome extension for saving vehicle listings from avto.net, monitoring price changes, and showing notifications about saved listings.
 
@@ -63,4 +63,4 @@ You can:
 
 ## Contact
 
-If you have questions about this privacy policy, contact the developer through the Chrome Web Store support channel listed for the extension.
+If you have questions about this privacy policy, contact **Tini Flegar** at [flegardev@gmail.com](mailto:flegardev@gmail.com) or through the Chrome Web Store support channel listed for the extension.

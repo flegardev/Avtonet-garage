@@ -90,16 +90,31 @@ export async function checkVehicle(vehicle) {
   const { html, status } = await fetchPage(vehicle.url);
 
   if (status === 0) {
-    return { changed: false, vehicleId: vehicle.id }; // transient — try again next cycle
+    return {
+      changed: false,
+      checkFailed: true,
+      vehicleId: vehicle.id,
+      reason: 'network',
+    }; // transient — try again next cycle
   }
 
-  if (status === 404 || status === 410 || !html) {
+  if (status === 404 || status === 410) {
     return {
       changed: vehicle.status !== 'removed',
       type: 'removed',
       vehicleId: vehicle.id,
       title: vehicle.title,
       message: `Oglas odstranjen: ${vehicle.title}`,
+    };
+  }
+
+  if (status < 200 || status >= 300 || !html) {
+    return {
+      changed: false,
+      checkFailed: true,
+      vehicleId: vehicle.id,
+      reason: 'http',
+      httpStatus: status,
     };
   }
 
@@ -125,6 +140,17 @@ export async function checkVehicle(vehicle) {
     };
   }
 
+  // A successful HTTP response can still be a rate-limit/challenge/interstitial.
+  // Without a title or price there is not enough evidence to mutate listing state.
+  if (!current.title && !current.priceNum) {
+    return {
+      changed: false,
+      checkFailed: true,
+      vehicleId: vehicle.id,
+      reason: 'unrecognized-page',
+    };
+  }
+
   // ─── Price change ─────────────────────────────────────────────────────────
   const savedPrice = vehicle.priceNum ?? parseEuroPrice(vehicle.price);
   const newPrice = current.priceNum;
@@ -145,4 +171,31 @@ export async function checkVehicle(vehicle) {
   }
 
   return { changed: false, vehicleId: vehicle.id };
+}
+
+export function buildVehicleCheckPatch(vehicle, result, checkedAt = Date.now()) {
+  if (result.checkFailed) {
+    return {
+      lastChecked: checkedAt,
+      consecutiveFailures: (vehicle.consecutiveFailures ?? 0) + 1,
+    };
+  }
+
+  const patch = {
+    lastChecked: checkedAt,
+    consecutiveFailures: 0,
+  };
+
+  if (!result.changed) return patch;
+
+  patch.status = result.type;
+  if (result.type === 'price_change') {
+    patch.priceHistory = [
+      ...(vehicle.priceHistory ?? []),
+      { price: result.newPrice, ts: checkedAt },
+    ];
+    patch.priceNum = result.newPrice;
+    patch.price = `${result.newPrice.toLocaleString('sl-SI')} €`;
+  }
+  return patch;
 }

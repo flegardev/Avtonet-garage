@@ -143,8 +143,8 @@ export default function Settings({ settings, onDataChange }) {
 
       <section className="settings-section settings-section--about">
         <div>
-          <h3>AvtoNetGaraza</h3>
-          <p>Če vam razširitev koristi, lahko razvoj podprete prek PayPala.</p>
+          <h3>AvtoNetGaraža</h3>
+          <p>Tini Flegar · flegardev@gmail.com</p>
         </div>
         <button
           type="button"

@@ -2,6 +2,7 @@
     "name": "avtonet-garaza",
     "version": "1.0.3",
     "private": true,
+    "author": "Tini Flegar <flegardev@gmail.com>",
     "scripts": {
         "build": "webpack --mode production",
         "dev": "webpack --mode development --watch",

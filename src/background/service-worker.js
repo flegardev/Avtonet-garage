@@ -5,7 +5,7 @@ import {
   updateVehicleStatus,
   addNotification,
 } from '../utils/storage.js';
-import { checkVehicle } from '../utils/priceMonitor.js';
+import { buildVehicleCheckPatch, checkVehicle } from '../utils/priceMonitor.js';
 import {
   sendPriceChangeNotification,
   sendSoldNotification,
@@ -65,23 +65,17 @@ async function handleVehicleCheck(vehicle) {
 
   try {
     const result = await checkVehicle(vehicle);
-    if (!result.changed) return;
-
-    // Persist updated status
-    const statusPatch = {
-      status: result.type,
-      lastChecked: Date.now(),
-      consecutiveFailures: 0,
-    };
-    if (result.type === 'price_change') {
-      statusPatch.priceHistory = [
-        ...(vehicle.priceHistory ?? []),
-        { price: result.newPrice, ts: Date.now() },
-      ];
-      statusPatch.priceNum = result.newPrice;
-      statusPatch.price = `${result.newPrice.toLocaleString('sl-SI')} €`;
-    }
+    const checkedAt = Date.now();
+    const statusPatch = buildVehicleCheckPatch(vehicle, result, checkedAt);
     await updateVehicleStatus(vehicle.id, statusPatch);
+
+    if (result.checkFailed) {
+      return;
+    }
+
+    if (!result.changed) {
+      return;
+    }
 
     // Record notification
     const notif = {

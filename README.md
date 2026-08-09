@@ -18,6 +18,8 @@
 | **Folders** | Organise saved vehicles into custom colour-coded categories |
 | **Dark UI** | Glassmorphism popup — 700 × 620 px |
 
+Monitoring changes status only when the response supplies definitive evidence. HTTP 404/410 and explicit sold/removed page signals are actionable; network failures, throttling, server errors, empty responses, and unrecognized interstitials are recorded as retry failures without marking a vehicle removed.
+
 ---
 
 ## Quick Start
@@ -108,7 +110,7 @@ Price signals are intentionally conservative. They are not live market valuation
 ```bash
 npm run dev          # webpack watch mode — reload extension after each build
 npm run build        # minified production build
-npm run test         # focused unit tests for parsing, scoring, storage, monitor diffs
+npm run test         # 19 focused unit tests for parsing, scoring, storage, and monitor state
 npm run validate     # tests + high-severity audit + production build
 npm run clean        # remove dist/ cross-platform
 ```
@@ -120,3 +122,7 @@ After rebuilding, reload the unpacked extension from `chrome://extensions`.
 ## Support
 
 A **Podpri razvoj** button is available in Settings.
+
+## Author
+
+**Tini Flegar** — Full-Stack Developer · IT & Finance. Contact: [flegardev@gmail.com](mailto:flegardev@gmail.com).
