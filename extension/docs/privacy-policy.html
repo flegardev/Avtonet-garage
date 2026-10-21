@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AvtoNetGaraza Privacy Policy</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #121b2d;
+      --text: #eef2f7;
+      --muted: #b9c4d3;
+      --accent: #f47920;
+      --line: rgba(255,255,255,0.1);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(244,121,32,0.18), transparent 28%),
+        linear-gradient(180deg, #0b1220, #0f1729);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 20px 72px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    h1, h2 { line-height: 1.15; margin: 0 0 16px; }
+    h1 { font-size: 40px; color: #ff9b4a; letter-spacing: -0.04em; }
+    h2 { font-size: 22px; margin-top: 28px; }
+    p, li { color: var(--muted); font-size: 16px; }
+    ul { padding-left: 22px; }
+    a { color: #ffb171; }
+    code { color: #eef2f7; }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(244,121,32,0.35);
+      background: rgba(244,121,32,0.12);
+      color: #ffb171;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="eyebrow">Chrome Extension Privacy Policy</div>
+      <h1>AvtoNetGaraza</h1>
+      <p>Last updated: April 11, 2026</p>
+      <p>AvtoNetGaraza is a Chrome extension for saving vehicle listings from avto.net, monitoring price changes, and showing notifications about saved listings.</p>
+
+      <h2>What data the extension accesses</h2>
+      <p>The extension only works on avto.net pages selected in the extension manifest.</p>
+      <p>When you choose to save a vehicle listing, the extension may access and store:</p>
+      <ul>
+        <li>listing title</li>
+        <li>listing URL</li>
+        <li>listing price and detected price changes</li>
+        <li>listing status, such as active, sold, or removed</li>
+        <li>listing images</li>
+        <li>listing description and vehicle specifications shown on the page</li>
+        <li>seller information shown on the listing page</li>
+        <li>folders, settings, and notification history created inside the extension</li>
+      </ul>
+
+      <h2>How data is used</h2>
+      <p>The data is used only to provide the extension's core features:</p>
+      <ul>
+        <li>saving vehicle listings into your local garage</li>
+        <li>organizing saved vehicles into folders</li>
+        <li>checking saved avto.net listings for price or status changes</li>
+        <li>showing local Chrome notifications about relevant changes</li>
+      </ul>
+
+      <h2>Storage and transfer</h2>
+      <ul>
+        <li>Data is stored locally in your browser using <code>chrome.storage.local</code>.</li>
+        <li>The extension does not require account creation or sign-in.</li>
+        <li>The extension does not sell user data.</li>
+        <li>The extension does not transfer user data to third parties for advertising or marketing.</li>
+        <li>The extension does not use user data for creditworthiness, lending, or data brokerage purposes.</li>
+      </ul>
+
+      <h2>Network access</h2>
+      <p>The extension may request pages from avto.net in order to check saved listings for updates. This access is limited to the extension's declared host permissions for <code>*://*.avto.net/*</code>.</p>
+      <p>The extension does not load remote code. All executable code is packaged with the extension.</p>
+
+      <h2>Notifications</h2>
+      <p>If notifications are enabled, the extension may show local browser notifications when:</p>
+      <ul>
+        <li>a saved listing price changes</li>
+        <li>a saved listing is marked sold</li>
+        <li>a saved listing is removed</li>
+        <li>a vehicle is saved to the garage</li>
+      </ul>
+
+      <h2>Your choices</h2>
+      <ul>
+        <li>remove saved vehicles at any time</li>
+        <li>clear notifications inside the extension</li>
+        <li>disable notifications in the extension settings</li>
+        <li>export or clear local extension data from the extension settings</li>
+        <li>uninstall the extension to stop all future access and monitoring</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>If you have questions about this privacy policy, contact the developer through the Chrome Web Store support channel listed for the extension.</p>
+    </section>
+  </main>
+</body>
+</html>
