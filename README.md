@@ -1,35 +1,52 @@
-# Avtonet Garage
+# AvtoNetGaraža
 
-Illustrative vehicle valuation calculations, saved-listing types, and reusable React vehicle components. The coefficients are heuristics, not validated market appraisals.
+Save avto.net listings, organize folders, follow price/status changes, compare saved vehicles, and record ownership expenses and the next service date.
 
-## Scope
+[Chrome Web Store](https://chromewebstore.google.com/detail/fgpcanlkfjelbccblfpgmobgfmahpiia) · [Repository](https://github.com/flegardev/Avtonet-garage)
 
-This repository currently contains TypeScript domain logic, hooks, and React components. It does not contain a complete application entry point or a verified hosted product. The build command checks/compiles TypeScript; it does not produce a deployable website. Previously advertised external demo links have been removed because ownership and operation could not be verified.
+## Release status
 
-Source: https://github.com/flegardev/Avtonet-garage
+Candidate **1.1.0**; previous version **1.0.4** confirmed from the actual Google update-service package. Upload/submission/publication have not occurred. See [release notes](CHANGELOG.md).
 
-## Development and verification
+The complete extension is in **`extension/`**. The TypeScript modules in `src/` are retained separately and are not the extension entry point. Full historical source was recovered from PR #1, rather than replacing the product with the incomplete module library.
 
-Use Node.js 24 and the committed npm lockfile.
+## Development
+
+Use Node.js 24 and npm.
 
 ```sh
+cd extension
 npm ci
-npm audit --audit-level=high
-npm run lint
-npm run typecheck
-npm test
-npm run build
+npm run validate
+npx playwright install chromium
+npm run test:extension
+npm run package
 ```
 
-These checks passed locally on 2026-10-13. GitHub Actions repeats them on pull requests and changes to main. Tests cover domain behavior; they do not establish live authentication, persistence, or multi-user operation.
+## Load unpacked
 
-## Structure
+Build first, then choose `extension/dist` in Chrome → Extensions → Developer mode → Load unpacked. Test with a separate profile. Production upgrades must go to the existing Store item; a different unpacked path can have a different extension ID.
 
-- `src/services`: domain calculations and workflow behavior.
-- `src/hooks`: React integration.
-- `src/components`: reusable interface components.
-- `src/types` and `src/utils`: types and formatting.
+## Architecture and data
 
-## Next useful milestone
+Webpack bundles React popup, content scripts and the MV3 monitoring worker. parse5 parses listing HTML without browser DOM globals. Cross-context Web Locks serialize garage updates. Published `ag_vehicles`, `ag_folders`, `ag_settings` and `ag_notifications` keys are retained; ownership uses a new `ag_ownership` key and is included in export.
 
-Add a small application shell and browser tests before presenting this repository as a working hosted application. Keep demonstration data clearly labeled and avoid claims that exceed the implemented scope.
+## Privacy and permissions
+
+Runtime permissions are unchanged from the recovered published manifest. No analytics backend or remote executable code is added. See [privacy policy](extension/PRIVACY.md). Exports contain private local records; share them only intentionally.
+
+## Limitations
+
+The local heuristic advisor is an estimate, not a market valuation or inspection. Monitoring depends on avto.net markup and availability. A service reminder appears in the garage, without push notifications. No new marketplace integration or maintenance provider is implied.
+
+## Verification
+
+Automated tests cover actual extension registration, real Chrome storage, legacy-shaped records, restart persistence, user controls and error states. UI fixtures use synthetic, visibly identified sample records. They do not represent the developer’s browsing activity or real car offers. Full live-site playback and all marketplace variants remain manual release checks. Store review/publication are separate from green CI.
+
+## Screenshots
+
+Test fixtures only; these screenshots do not represent real user activity.
+
+![avtonet test fixture](docs/screenshots/avtonet-after.png)
+
+![avtonet test fixture](docs/screenshots/avtonet-ownership-after.png)

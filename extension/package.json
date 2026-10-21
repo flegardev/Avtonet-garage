@@ -1,0 +1,41 @@
+{
+  "name": "avtonet-garaza",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch",
+    "preview": "npx --yes http-server dist -p 4173 -c-1",
+    "lint": "eslint src tests webpack.config.js generate-icons.js generate-icons-node.js",
+    "test": "vitest run",
+    "clean": "rimraf dist",
+    "validate": "npm run lint && npm run test && npm audit --audit-level=high && npm run build",
+    "package": "npm run build && node scripts/package-extension.mjs",
+    "package:win": "npm run build && powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-extension.ps1",
+    "test:extension": "node scripts/extension-smoke.cjs"
+  },
+  "dependencies": {
+    "parse5": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "@babel/preset-react": "^7.22.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.61.0",
+    "babel-loader": "^9.1.3",
+    "copy-webpack-plugin": "^14.0.0",
+    "css-loader": "^6.8.1",
+    "eslint": "^10.3.0",
+    "globals": "^17.6.0",
+    "jsdom": "^29.1.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "rimraf": "^6.1.3",
+    "style-loader": "^3.3.3",
+    "vitest": "^4.1.5",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

@@ -1,0 +1,361 @@
+/* AvtoGarage — Content Script Styles
+   All classes are prefixed with "ag-" to avoid collisions with avto.net styles.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Save Button ─────────────────────────────────────────────────────────── */
+
+#ag-save-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 2147483647;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 20px;
+
+  background: linear-gradient(135deg, #f47920, #d4610a);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+
+  box-shadow:
+    0 4px 20px rgba(244, 121, 32, 0.5),
+    0 1px 4px rgba(0, 0, 0, 0.3);
+
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.18s ease,
+    background 0.2s ease;
+}
+
+#ag-save-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 8px 28px rgba(244, 121, 32, 0.65),
+    0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#ag-save-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+#ag-save-btn:focus-visible,
+.ag-collapse-btn:focus-visible,
+.ag-advisor-header:focus-visible {
+  outline: 3px solid #ffb86b;
+  outline-offset: 3px;
+}
+
+#ag-save-btn[data-state="saving"] {
+  background: linear-gradient(135deg, #d4610a, #b85108);
+  pointer-events: none;
+}
+
+#ag-save-btn[data-state="saved"] {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  box-shadow: 0 4px 20px rgba(22, 163, 74, 0.5);
+}
+
+.ag-btn-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Smart Advisor Panel ──────────────────────────────────────────────────── */
+
+#ag-advisor {
+  margin: 20px auto;
+  max-width: 860px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #13151f;
+  border: 1px solid rgba(244, 121, 32, 0.3);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+.ag-advisor-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: linear-gradient(90deg, #1a1d2e, #1e2236);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  cursor: pointer;
+  user-select: none;
+}
+
+.ag-advisor-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ff9340;
+  flex: 1;
+}
+
+.ag-advisor-rec {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Score ring */
+.ag-advisor-score {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+
+.ag-score-ring {
+  width: 46px;
+  height: 46px;
+  transform: rotate(-90deg);
+}
+
+.ag-ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 3;
+}
+
+.ag-ring-fill {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  transition: stroke-dashoffset 1s ease;
+}
+
+.ag-score-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--score-color, #6366f1);
+}
+
+.ag-collapse-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 2px;
+  transition: transform 0.2s ease;
+  line-height: 1;
+}
+
+#ag-advisor.ag-advisor--collapsed .ag-advisor-body {
+  display: none;
+}
+
+#ag-advisor.ag-advisor--collapsed .ag-collapse-btn {
+  transform: rotate(-90deg);
+}
+
+/* ── Advisor Body ─────────────────────────────────────────────────────────── */
+
+.ag-advisor-body {
+  padding: 18px 20px 14px;
+}
+
+.ag-price-verdict {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.ag-pv-label {
+  font-size: 12px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ag-pv-value {
+  font-weight: 700;
+  color: #e2e8f0;
+  text-transform: capitalize;
+}
+
+.ag-pv-conf {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.ag-pv-explain {
+  width: 100%;
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* ── Columns grid ─────────────────────────────────────────────────────────── */
+
+.ag-advisor-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.ag-col {
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.ag-col--pos  { background: rgba(34, 197, 94, 0.07);  border: 1px solid rgba(34, 197, 94, 0.2); }
+.ag-col--warn { background: rgba(245, 158, 11, 0.07); border: 1px solid rgba(245, 158, 11, 0.2); }
+.ag-col--red  { background: rgba(239, 68, 68, 0.07);  border: 1px solid rgba(239, 68, 68, 0.2); }
+
+.ag-col-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.ag-col-title--pos  { color: #4ade80; }
+.ag-col-title--warn { color: #fbbf24; }
+.ag-col-title--red  { color: #f87171; }
+
+.ag-advisor-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ag-advisor-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #cbd5e1;
+  cursor: default;
+  line-height: 1.4;
+}
+
+.ag-advisor-item:hover { color: #f1f5f9; }
+
+.ag-item-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.ag-item--pos  .ag-item-dot { background: #22c55e; }
+.ag-item--warn .ag-item-dot { background: #f59e0b; }
+.ag-item--red  .ag-item-dot { background: #ef4444; }
+
+.ag-advisor-footer {
+  font-size: 11px;
+  color: #475569;
+  text-align: center;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ── Toast ────────────────────────────────────────────────────────────────── */
+
+#ag-toast {
+  position: fixed;
+  bottom: 90px;
+  right: 28px;
+  z-index: 2147483647;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  max-width: 320px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#ag-toast.ag-toast--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ag-toast--success {
+  background: #052e16;
+  border: 1px solid #166534;
+  color: #4ade80;
+}
+
+.ag-toast--error {
+  background: #2d0a0a;
+  border: 1px solid #991b1b;
+  color: #f87171;
+}
+
+.ag-toast--info {
+  background: #1e1b4b;
+  border: 1px solid #3730a3;
+  color: #a5b4fc;
+}
+
+@media (max-width: 640px) {
+  #ag-save-btn {
+    right: 16px;
+    bottom: 18px;
+    max-width: calc(100vw - 32px);
+  }
+
+  #ag-advisor {
+    margin: 14px 10px;
+  }
+
+  .ag-advisor-header {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ag-save-btn,
+  #ag-toast,
+  .ag-ring-fill,
+  .ag-collapse-btn {
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,27 @@
+node_modules/
+dist/
+*.zip
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.env
+.env.local
+
+# --- repo cleanup hygiene (added) ---
+build/
+out/
+.next/
+.turbo/
+.vite/
+.cache/
+coverage/
+test-results/
+playwright-report/
+output/
+tmp/
+*.swp
+*.bak
+*.orig
+.env.*.local
+promo/
