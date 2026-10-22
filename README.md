@@ -50,3 +50,9 @@ Test fixtures only; these screenshots do not represent real user activity.
 ![avtonet test fixture](docs/screenshots/avtonet-after.png)
 
 ![avtonet test fixture](docs/screenshots/avtonet-ownership-after.png)
+
+## Flagship redesign candidate 1.2.0
+
+A private shortlist for your next car. Full-tab garage; compact launcher; highlighted comparison differences and asking-price gaps; personal buying notes and checklist; validated merge-only backup recovery.
+
+[Product and release limits](docs/flagship/PRODUCT.md) · [Research](docs/flagship/RESEARCH.md) · [Store material draft](docs/flagship/STORE_MATERIALS.md). This candidate has not been submitted or published.

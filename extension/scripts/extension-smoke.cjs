@@ -21,7 +21,7 @@ async function launch(extensionPath, profile) {
   const id = await item.getAttribute('id'); assert.match(id,/^[a-p]{32}$/);
   const popup = await context.newPage();
   popup.on('pageerror', e => errors.push(e.message));
-  await popup.goto(`chrome-extension://${id}/popup.html`);
+  await popup.goto(`chrome-extension://${id}/popup.html?workspace=1`);
   return { context, page:popup, id };
 }
 const seedVehicles = [

@@ -1,6 +1,6 @@
 {
   "name": "avtonet-garaza",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
@@ -12,7 +12,8 @@
     "validate": "npm run lint && npm run test && npm audit --audit-level=high && npm run build",
     "package": "npm run build && node scripts/package-extension.mjs",
     "package:win": "npm run build && powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-extension.ps1",
-    "test:extension": "node scripts/extension-smoke.cjs"
+    "test:extension": "node scripts/extension-smoke.cjs && node scripts/flagship-journeys.cjs",
+    "test:flagship": "node scripts/flagship-journeys.cjs"
   },
   "dependencies": {
     "parse5": "^8.0.1",
