@@ -64,6 +64,15 @@ async function avtonet() {
     assert.equal(stored.ag_vehicles[0].priceNum,9000); assert.equal(stored.ag_ownership['fixture-car-1'].expenses[0].amount,135.5);
     await page.reload();
     assert.equal((await page.evaluate(()=>chrome.storage.local.get('ag_ownership'))).ag_ownership['fixture-car-1'].expenses.length,1);
+    await page.evaluate(()=>chrome.storage.local.set({ag_settings:{notificationsEnabled:false,checkIntervalMinutes:60}}));
+    await context.route('https://www.avto.net/Ads/details.asp?id=555', route=>route.fulfill({contentType:'text/html; charset=utf-8',body:'<!doctype html><html><body><main><h1>Test fixture · Content save</h1><div class="price">12.000 €</div><table><tr><td>Letnik:</td><td>2020</td></tr><tr><td>Prevoženih km:</td><td>80.000</td></tr></table></main></body></html>'}));
+    const listing=await context.newPage(); listing.on('pageerror',error=>errors.push(error.message));
+    await listing.goto('https://www.avto.net/Ads/details.asp?id=555');
+    await expect(listing.locator('#ag-advisor')).toContainText('hevristična ocena, brez tržnih podatkov v živo');
+    await listing.locator('#ag-save-btn').click();
+    await expect(listing.locator('#ag-save-btn')).toContainText('Shranjeno!');
+    const saved=await page.evaluate(()=>chrome.storage.local.get('ag_vehicles'));
+    assert.ok(saved.ag_vehicles.some(v=>v.title==='Test fixture · Content save'));
     console.log('PASS AvtoNet: empty state, legacy garage, comparison, expenses, due service, storage, keyboard dialog, real MV3 monitor');
   } finally { await context.close(); }
 }
