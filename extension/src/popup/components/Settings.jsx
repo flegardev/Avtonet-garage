@@ -86,7 +86,7 @@ export default function Settings({ settings, onDataChange }) {
         <div className="settings-row">
           <div>
             <h3>Chrome obvestila</h3>
-            <p>Spremljanje cen in statusa deluje tudi, ko so obvestila izklopljena.</p>
+            <p>Preverjanje poteka tudi brez obvestil, če avto.net omogoča dostop do oglasa.</p>
           </div>
           <label className="switch">
             <input
