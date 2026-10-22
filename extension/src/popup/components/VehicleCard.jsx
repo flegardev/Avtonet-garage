@@ -71,6 +71,7 @@ export default function VehicleCard({ vehicle, folders, onSelect, onDataChange }
       role="button"
       tabIndex="0"
       onKeyDown={(e) => {
+        if (e.target !== e.currentTarget) return;
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           onSelect(vehicle);

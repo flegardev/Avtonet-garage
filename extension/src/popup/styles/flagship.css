@@ -1,0 +1,307 @@
+/* Garage: graphite, warm signal orange, photography-led workspace. */
+:root {
+  --bg:#10161c;
+  --bg2:#182129;
+  --bg3:#222e38;
+  --surface:#182129;
+  --surface-h:#202c35;
+  --border:#34424d;
+  --text:#f0f3f5;
+  --text2:#b5c1ca;
+  --text3:#a3b2bd;
+  --accent:#ffad70;
+  --accent-h:#ffc093;
+  --accent-glow:transparent;
+  --radius:10px;
+  --shadow:0 12px 36px #0003
+}
+
+html.garage-workspace,html.garage-workspace body {
+  width:100%;
+  min-height:100%;
+  max-height:none;
+  overflow:auto
+}
+
+.garage-workspace .app {
+  height:100dvh;
+  max-width:1600px;
+  margin:auto
+}
+.garage-workspace .header {
+  padding:24px 32px;
+  background:var(--bg);
+  backdrop-filter:none;
+  border-bottom:1px solid var(--border)
+}
+.garage-workspace .header-top {
+  margin-bottom:20px
+}
+.garage-workspace .logo-text {
+  font-size:22px;
+  letter-spacing:-.5px
+}
+.garage-workspace .search-bar {
+  max-width:640px
+}
+.garage-workspace .dashboard {
+  height:100%
+}
+.garage-workspace .folder-sidebar {
+  width:200px;
+  flex-shrink:0;
+  background:var(--bg);
+  padding:24px 16px
+}
+.garage-workspace .dashboard-main {
+  padding:24px 32px
+}
+.garage-workspace .vehicle-grid {
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+  gap:22px
+}
+.garage-workspace .vehicle-card {
+  background:var(--bg2);
+  box-shadow:none;
+  border:1px solid var(--border);
+  border-radius:10px
+}
+.garage-workspace .vehicle-card:hover {
+  transform:none;
+  border-color:var(--accent);
+  box-shadow:none
+}
+.garage-workspace .dashboard-summary {
+  margin:20px 0;
+  gap:0;
+  background:none;
+  border:0
+}
+.garage-workspace .summary-tile {
+  background:none;
+  border:0;
+  border-right:1px solid var(--border);
+  border-radius:0;
+  padding:0 24px
+}
+.garage-workspace .summary-tile:first-child {
+  padding-left:0
+}
+.garage-workspace .summary-value {
+  font-size:28px;
+  font-weight:600
+}
+.garage-workspace .modal {
+  max-width:1040px;
+  width:calc(100vw - 64px);
+  max-height:90dvh
+}
+.garage-workspace .settings-panel,.garage-workspace .folder-manager {
+  max-width:900px;
+  margin:auto;
+  padding:32px
+}
+.garage-workspace .empty-state {
+  min-height:360px
+}
+.garage-workspace .comparison {
+  background:var(--bg2);
+  border-radius:8px;
+  padding:16px
+}
+.comparison tr.different td {
+  background:#ffad7010
+}
+.comparison th,.comparison td {
+  padding:14px!important
+}
+.comparison caption {
+  text-align:left;
+  padding:12px 0;
+  color:var(--text2)
+}
+.workspace-intro {
+  margin-bottom:22px
+}
+.workspace-intro h1 {
+  font-size:30px;
+  letter-spacing:-.8px;
+  margin:0 0 6px
+}
+.workspace-intro p {
+  color:var(--text2);
+  max-width:65ch
+}
+.decision-notes {
+  padding:20px;
+  border-top:1px solid var(--border)
+}
+.decision-notes textarea {
+  display:block;
+  width:100%;
+  min-height:100px;
+  padding:12px;
+  margin:8px 0;
+  background:var(--bg);
+  border:1px solid var(--border);
+  color:var(--text);
+  border-radius:6px;
+  font:inherit
+}
+.decision-notes label {
+  display:block;
+  margin:8px 0
+}
+.decision-notes input {
+  accent-color:var(--accent);
+  margin-right:8px
+}
+
+html.garage-launcher,html.garage-launcher body {
+  width:380px;
+  min-height:0;
+  max-height:600px;
+  overflow:auto
+}
+.launcher {
+  padding:24px
+}
+.launcher header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+.launcher-brand {
+  font-weight:700;
+  font-size:17px
+}
+.local-label {
+  font-size:11px;
+  color:var(--text2);
+  border:1px solid var(--border);
+  padding:3px 7px;
+  border-radius:5px
+}
+.launcher h1 {
+  font-size:30px;
+  line-height:1.17;
+  letter-spacing:-.8px;
+  margin:30px 0 14px
+}
+.launcher p {
+  color:var(--text2);
+  line-height:1.6
+}
+.launcher-open {
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  margin:24px 0;
+  font-size:14px;
+  padding:13px
+}
+.launcher section {
+  padding:18px 0;
+  border-top:1px solid var(--border)
+}
+.launcher h2 {
+  font-size:14px;
+  margin-bottom:10px
+}
+.launcher ol {
+  padding-left:20px;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.9
+}
+.launcher .btn-secondary {
+  width:100%;
+  padding:11px
+}
+.launcher-status {
+  font-size:11px;
+  margin-top:18px
+}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible {
+  outline:3px solid var(--accent);
+  outline-offset:3px
+}
+
+@media(max-width:700px) {
+  .garage-workspace .header {
+  padding:16px
+}
+.garage-workspace .folder-sidebar {
+  width:140px;
+  padding:12px 8px
+}
+.garage-workspace .dashboard-main {
+  padding:16px
+}
+.garage-workspace .vehicle-grid {
+  grid-template-columns:1fr
+}
+.garage-workspace .summary-tile {
+  padding:0 8px
+}
+.garage-workspace .summary-value {
+  font-size:22px
+}
+.garage-workspace .modal {
+  width:95vw
+}
+.workspace-intro h1 {
+  font-size:24px
+}
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+  animation:none!important;
+  transition:none!important;
+  scroll-behavior:auto!important
+}
+
+}
+
+.btn-primary {
+  background:var(--accent);
+  color:#182129;
+  box-shadow:none;
+  border-color:var(--accent)
+}
+.btn-primary:hover {
+  background:var(--accent-h);
+  box-shadow:none
+}
+.settings-header {
+  align-items:start;
+  flex-direction:column;
+  gap:12px
+}
+.settings-status {
+  max-width:none;
+  white-space:normal;
+  overflow:visible;
+  text-overflow:clip;
+  line-height:1.6
+}
+.settings-section--about:has(input[type=file]) {
+  display:block
+}
+.settings-section input[type=file] {
+  display:block;
+  margin:10px 0;
+  width:100%;
+  max-width:100%
+}
+.settings-section input::file-selector-button {
+  background:var(--bg3);
+  color:var(--text);
+  border:1px solid var(--border);
+  padding:8px 12px;
+  border-radius:6px;
+  margin-right:12px
+}
+

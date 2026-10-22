@@ -1,3 +1,9 @@
+# 1.2.0 — flagship redesign candidate
+
+Full-tab garage; compact launcher; highlighted comparison differences and asking-price gaps; personal buying notes and checklist; validated merge-only backup recovery.
+
+Not published. Live avto.net access remains blocked. Photos depend on the listing host; no live monitoring claim. Service reminders are visible in the garage, not scheduled push alerts.
+
 # Changelog
 
 ## 1.1.0 — candidate, 2026-10-21

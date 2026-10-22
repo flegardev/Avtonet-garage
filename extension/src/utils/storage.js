@@ -53,6 +53,8 @@ export function upsertVehicle(vehicle) {
       vehicles[idx] = normalizeVehicle({ ...existing, ...normalizedVehicle,
         folderId: existing.folderId || normalizedVehicle.folderId,
         savedAt: existing.savedAt || normalizedVehicle.savedAt,
+        buyerNotes: existing.buyerNotes ?? normalizedVehicle.buyerNotes,
+        buyerChecklist: existing.buyerChecklist ?? normalizedVehicle.buyerChecklist,
         priceHistory: existing.priceHistory?.length ? existing.priceHistory : normalizedVehicle.priceHistory,
       });
     } else {
@@ -210,6 +212,35 @@ export async function clearAllData() {
   });
 }
 
+// Merge recovery never overwrites a vehicle already present in this garage.
+export function importData(data) {
+  if (!data || data.version !== 1 || !Array.isArray(data.vehicles) || data.vehicles.length > 10000) throw new Error('Neveljavna varnostna kopija garaže (različica 1).');
+  const ids = new Set();
+  const incoming = data.vehicles.map(v => {
+    if (!v || typeof v.id !== 'string' || !v.id || ['__proto__','constructor','prototype'].includes(v.id) || ids.has(v.id) || typeof v.title !== 'string') throw new Error('Kopija vsebuje neveljavno ali podvojeno vozilo.');
+    ids.add(v.id);
+    let url; try { url = new URL(v.url); } catch { throw new Error('Neveljaven naslov oglasa.'); }
+    if (!['https:','http:'].includes(url.protocol) || !(url.hostname === 'avto.net' || url.hostname.endsWith('.avto.net'))) throw new Error('Kopija vsebuje nepodprt naslov oglasa.');
+    return normalizeVehicle(v);
+  });
+  return serialized(async () => {
+    const current = await getVehicles();
+    const existing = new Set(current.map(v => v.id));
+    const additions = incoming.filter(v => !existing.has(v.id));
+    const folders = await getFolders();
+    const folderIds = new Set(folders.map(f => f.id));
+    for (const f of Array.isArray(data.folders) ? data.folders.slice(0,200) : []) if (f && typeof f.id === 'string' && !folderIds.has(f.id)) { folders.push(normalizeFolder(f)); folderIds.add(f.id); }
+    const {ag_ownership = {}} = await chrome.storage.local.get('ag_ownership');
+    for (const v of additions) {
+      if (!folderIds.has(v.folderId)) v.folderId = 'favourites';
+      const record = data.ownership?.[v.id];
+      if (record && Array.isArray(record.expenses)) ag_ownership[v.id] = {expenses:record.expenses.filter(e => e && Number.isFinite(e.amount) && e.amount > 0 && typeof e.note === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(e.date)).slice(0,10000),nextService:/^\d{4}-\d{2}-\d{2}$/.test(record.nextService) ? record.nextService : ''};
+    }
+    await chrome.storage.local.set({[KEYS.VEHICLES]:[...current,...additions],[KEYS.FOLDERS]:folders,ag_ownership});
+    return additions.length;
+  });
+}
+
 // ─── Settings ────────────────────────────────────────────────────────────────
 
 export async function getSettings() {
@@ -251,6 +282,8 @@ function normalizeSettings(settings) {
 function normalizeVehicle(vehicle) {
   return {
     ...vehicle,
+    buyerNotes: typeof vehicle.buyerNotes === 'string' ? vehicle.buyerNotes.slice(0,3000) : '',
+    buyerChecklist: Array.isArray(vehicle.buyerChecklist) ? [...new Set(vehicle.buyerChecklist.filter(i => Number.isInteger(i) && i >= 0 && i < 4))] : [],
     images: Array.isArray(vehicle.images) ? vehicle.images.slice(0, 12) : [],
     description:
       typeof vehicle.description === 'string'

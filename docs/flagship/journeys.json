@@ -1,0 +1,21 @@
+[
+  {
+    "product": "AvtoNetGaraža",
+    "passed": true,
+    "performance": {
+      "domContentLoadedMs": [
+        17.09999999962747,
+        17.799999999813735,
+        18.199999999254942,
+        18.799999999813735,
+        20.799999999813735
+      ],
+      "medianMs": 18.199999999254942,
+      "metrics": {
+        "Nodes": 1351,
+        "TaskDuration": 0.076886,
+        "JSHeapUsedSize": 11046872
+      }
+    }
+  }
+]

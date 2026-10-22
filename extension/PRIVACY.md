@@ -18,6 +18,7 @@ When you choose to save a vehicle listing, the extension may access and store:
 - listing description and vehicle specifications shown on the page
 - seller information shown on the listing page
 - folders, settings, and notification history created inside the extension
+- personal buying notes, checklist selections, manual ownership expenses and service dates
 
 ## How data is used
 

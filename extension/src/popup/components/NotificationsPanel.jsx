@@ -42,7 +42,7 @@ export default function NotificationsPanel({ notifications, onDataChange }) {
           </div>
           <h3 className="empty-title">Še ni obvestil</h3>
           <p className="empty-desc">
-            AvtoNetGaraža vas bo obvestila, ko se cena spremeni ali ko je oglas prodan oziroma odstranjen.
+            Tu se prikažejo zaznane spremembe cene in statusa. Preverjanje je mogoče le, ko avto.net omogoča dostop do oglasa.
           </p>
         </div>
       </div>

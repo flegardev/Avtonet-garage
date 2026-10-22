@@ -107,6 +107,7 @@ export default function Dashboard({
 
       {/* Main grid */}
       <div className="dashboard-main">
+        <div className="workspace-intro"><h1>Vaš ožji izbor.</h1><p>Primerjajte pomembne razlike, zberite vprašanja za prodajalca in izberite z več zaupanja.</p></div>
         <Comparison vehicles={vehicles} />
         {(allVehicles ?? vehicles).length > 0 && (
           <div className="dashboard-summary" aria-label="Povzetek garaže">

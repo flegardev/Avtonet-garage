@@ -1,13 +1,5 @@
-# Release safety
+# Flagship redesign status
 
-Candidate 1.1.0. Previous 1.0.4.
+New candidate on branch `flagship/product-redesign`. See [product scope](docs/flagship/PRODUCT.md), [research](docs/flagship/RESEARCH.md) and [launch gates](docs/flagship/PRODUCT_LAUNCH_PLAN.md).
 
-- Existing item: fgpcanlkfjelbccblfpgmobgfmahpiia
-- Store dashboard: browser tool refused gallery automation.
-- Uploaded: no.
-- Submitted: no.
-- Published: no.
-- CI must be green before merge; see the PR checks.
-- Do not submit to a duplicate listing.
-- Keep the previous package and source ref as rollback evidence.
-- Full live-site workflow checks remain a publication gate.
+Store uploaded: no. Submitted: no. Published: no. Existing published versions remain unchanged. CI status and exact artifact hashes are recorded in the workspace release report after the PR runs finish.

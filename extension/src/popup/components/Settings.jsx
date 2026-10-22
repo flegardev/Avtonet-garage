@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { clearAllData, exportData, saveSettings } from '../../utils/storage.js';
+import { clearAllData, exportData, importData, saveSettings } from '../../utils/storage.js';
 
 export default function Settings({ settings, onDataChange }) {
   const [interval, setInterval] = useState(settings.checkIntervalMinutes ?? 60);
@@ -79,14 +79,14 @@ export default function Settings({ settings, onDataChange }) {
     <div className="settings-panel">
       <div className="settings-header">
         <h2 className="section-heading">Nastavitve</h2>
-        {status && <span className="settings-status">{status}</span>}
+        {status && <span className="settings-status" role="status">{status}</span>}
       </div>
 
       <section className="settings-section">
         <div className="settings-row">
           <div>
             <h3>Chrome obvestila</h3>
-            <p>Spremljanje cen in statusa deluje tudi, ko so obvestila izklopljena.</p>
+            <p>Preverjanje poteka tudi brez obvestil, če avto.net omogoča dostop do oglasa.</p>
           </div>
           <label className="switch">
             <input
@@ -141,6 +141,10 @@ export default function Settings({ settings, onDataChange }) {
         </div>
       </section>
 
+      <section className="settings-section settings-section--about">
+        <label>Obnovi varnostno kopijo (JSON, do 25 MB)<input type="file" accept="application/json" onChange={async e => { const file=e.target.files[0]; if(!file)return; try { if(file.size>25*1024*1024)throw new Error('Datoteka je prevelika.'); const count=await importData(JSON.parse(await file.text()));setStatus(`Obnovljeno: ${count} vozil. Obstoječi zapisi so ohranjeni.`);onDataChange(); } catch(error){setStatus(error instanceof SyntaxError ? 'Datoteka ni veljavna kopija JSON. Izberite datoteko, izvoženo iz garaže.' : error.message||'Obnova ni uspela.');} e.target.value=''; }} /></label>
+        <p>Obnova doda manjkajoča vozila, mape in njihove stroške. Obstoječa vozila in nastavitve ostanejo nespremenjeni.</p>
+      </section>
       <section className="settings-section settings-section--about">
         <div>
           <h3>AvtoNetGaraza</h3>

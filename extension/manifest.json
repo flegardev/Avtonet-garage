@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "AvtoNetGaraža",
-  "version": "1.1.0",
-  "description": "Shranjujte vozila z avto.net, sledite spremembam cen in statusu oglasov ter prejemajte obvestila.",
+  "version": "1.2.0",
+  "description": "Shranite oglase z avto.net, primerjajte vozila in zabeležite vprašanja za prodajalca.",
   "minimum_chrome_version": "116",
   "permissions": [
     "storage",

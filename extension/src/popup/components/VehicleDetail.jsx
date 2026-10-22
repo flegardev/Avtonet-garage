@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { removeVehicle, moveVehicleToFolder } from '../../utils/storage.js';
 import Ownership from './Ownership.jsx';
+import DecisionNotes from './DecisionNotes.jsx';
 import { analyzeVehicle } from '../../content/smartAdvisor.js';
 import {
   buildEquipmentSections,
@@ -255,6 +256,7 @@ export default function VehicleDetail({ vehicle, folders, onClose, onDataChange 
               </div>
             )}
 
+            <DecisionNotes key={`notes-${vehicle.id}`} vehicle={vehicle} />
             <Ownership key={vehicle.id} vehicleId={vehicle.id} />
 
             {/* Move to folder */}
