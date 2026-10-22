@@ -184,7 +184,7 @@ function buildAdvisorHTML(analysis) {
         <div class="ag-price-verdict">
           <span class="ag-pv-label">Cenovni signal:</span>
           <span class="ag-pv-value">${escHtml(priceVerdict.verdict)}</span>
-          <span class="ag-pv-conf">(${priceVerdict.confidence}% zanesljivost)</span>
+          <span class="ag-pv-conf">(hevristična ocena, brez tržnih podatkov v živo)</span>
           <p class="ag-pv-explain">${escHtml(priceVerdict.explanation)}</p>
         </div>` : ''}
 
