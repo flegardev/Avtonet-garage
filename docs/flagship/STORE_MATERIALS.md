@@ -6,11 +6,16 @@ A private shortlist for your next car.
 
 ## Description
 
-Full-tab garage; compact launcher; highlighted comparison differences and asking-price gaps; personal buying notes and checklist; validated merge-only backup recovery.
+Zgradite urejen izbor vozil z avto.net in jih primerjajte na enem mestu.
 
-Your data stays in this Chrome profile. No account or analytics service is required. Existing settings and records are retained on upgrade. Back up important data before changing browsers or removing an extension.
+• Shranite oglas neposredno z avto.net
+• Organizirajte vozila v mape
+• Primerjajte specifikacije in izklicne cene
+• Zabeležite vprašanja za prodajalca in kontrolni seznam za ogled
+• Vnesite stroške ter servisne podatke
+• Izvozite ali obnovite lokalno varnostno kopijo
 
-Live avto.net access remains blocked. Photos depend on the listing host; no live monitoring claim. Service reminders are visible in the garage, not scheduled push alerts.
+Vaš izbor in zapiski ostanejo v tem brskalniku. Primerjava prikazuje podatke iz shranjenih oglasov; ne ocenjuje tržne vrednosti. Spremembe na avto.net so odvisne od dostopnosti posameznega oglasa, zato razširitev ne zagotavlja samodejnega spremljanja ali takojšnjih obvestil.
 
 ## Update notes
 
